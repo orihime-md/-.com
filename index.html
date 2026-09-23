@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09091a">
+  <title>Orihime MD — Link Your WhatsApp</title>
+  <style>
+    :root{--bg:#080816;--panel:rgba(20,18,39,.64);--panel2:rgba(255,255,255,.075);--line:rgba(255,255,255,.12);--pink:#ff73c8;--pink2:#b46cff;--text:#fff;--muted:#bbb5cf;--good:#70f2bb;--warn:#ffd36e;--danger:#ff7a8d;--shadow:0 24px 80px rgba(0,0,0,.45)}
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text)}
+    body{overflow-x:hidden}
+    body::before{content:"";position:fixed;inset:0;background:linear-gradient(120deg,rgba(139,79,255,.16),rgba(255,77,191,.08),transparent 60%),url('/assets/background.jpg') center/cover no-repeat;filter:saturate(1.15);opacity:.78;z-index:-3}
+    body::after{content:"";position:fixed;inset:0;background:radial-gradient(circle at 50% -10%,rgba(255,120,220,.24),transparent 32%),linear-gradient(180deg,rgba(6,6,18,.25),rgba(6,6,18,.86));z-index:-2}
+    .orb{position:fixed;filter:blur(45px);border-radius:50%;pointer-events:none;z-index:-1;opacity:.36;animation:drift 14s ease-in-out infinite}.orb.a{width:260px;height:260px;background:#ff4ab6;top:7%;left:-80px;animation-duration:16s}.orb.b{width:300px;height:300px;background:#6e7aff;right:-110px;top:28%;animation-duration:19s;animation-delay:-4s}.orb.c{width:220px;height:220px;background:#bd59ff;left:40%;bottom:-110px;animation-duration:13s;animation-delay:-8s}
+    @keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(26px,-22px) scale(1.08)}}
+    @keyframes riseIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes pulseGlow{0%,100%{box-shadow:0 0 0 0 rgba(112,242,187,.55)}50%{box-shadow:0 0 0 6px rgba(112,242,187,0)}}
+    @keyframes sparkle{0%,100%{opacity:.5;transform:scale(.94)}50%{opacity:1;transform:scale(1.06)}}
+    .card{animation:riseIn .6s ease both}
+    .hero-main::before{animation:sparkle 6s ease-in-out infinite}
+    .dot{animation:pulseGlow 2s ease-in-out infinite}
+    .anime-tile img{transition:transform .5s ease,opacity .22s ease}.anime-tile:hover img{transform:scale(1.06)}
+    .pair-code{animation:riseIn .5s ease both}
+    .btn.primary:hover{box-shadow:0 20px 40px rgba(201,96,222,.38)}
+    .shell{width:min(1220px,92vw);margin:0 auto;padding:26px 0 54px}
+    .topbar{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:10px 0 22px}.brand{display:flex;align-items:center;gap:12px}.brand-badge{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,var(--pink),var(--pink2));font-size:23px;box-shadow:0 12px 30px rgba(239,75,185,.28)}.brand h1{font-size:18px;margin:0}.brand small{display:block;color:var(--muted);margin-top:2px}.live{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:13px}.dot{width:9px;height:9px;border-radius:50%;background:var(--good);box-shadow:0 0 18px var(--good)}
+    .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:stretch}.card{background:linear-gradient(180deg,rgba(27,25,49,.74),rgba(11,10,27,.70));border:1px solid var(--line);box-shadow:var(--shadow);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-radius:28px}.hero-main{padding:38px 36px;min-height:390px;position:relative;overflow:hidden}.hero-main::before{content:"✿";position:absolute;right:28px;top:16px;font-size:150px;color:rgba(255,255,255,.025);transform:rotate(-15deg)}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);border-radius:999px;padding:7px 11px;font-size:12px;color:#e9dff8}.eyebrow b{color:#ff9fda}.hero h2{font-size:clamp(38px,5vw,68px);line-height:.96;margin:20px 0 14px;letter-spacing:-.04em}.hero h2 span{background:linear-gradient(90deg,#fff,#ffb6e5 45%,#bd9dff);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{color:var(--muted);font-size:15px;line-height:1.7;max-width:650px;margin:0}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.btn{border:0;border-radius:14px;padding:13px 17px;font-weight:800;cursor:pointer;color:white;transition:.2s transform,.2s opacity,.2s box-shadow}.btn:hover{transform:translateY(-2px)}.btn.primary{background:linear-gradient(135deg,var(--pink),#8d6bff);box-shadow:0 16px 34px rgba(201,96,222,.25)}.btn.ghost{background:rgba(255,255,255,.07);border:1px solid var(--line)}.btn.danger{background:rgba(255,90,117,.13);border:1px solid rgba(255,122,141,.23);color:#ffd6dd}.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+    .stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px}.stat{padding:20px;border-radius:22px;background:var(--panel2);border:1px solid var(--line)}.stat .label{color:var(--muted);font-size:12px}.stat .value{font-size:34px;font-weight:900;margin-top:8px}.stat .sub{margin-top:7px;color:#d5ccdf;font-size:12px}.anime-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px}.anime-tile{height:100%;min-height:173px;border-radius:22px;overflow:hidden;position:relative;border:1px solid var(--line);background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02))}.anime-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .22s ease}.anime-tile .shade{position:absolute;inset:auto 0 0;padding:24px 14px 14px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.78))}.anime-tile b{display:block;font-size:13px}.anime-tile span{color:#d2c8dd;font-size:11px}
+    .section{margin-top:18px;padding:20px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.section-head h3{margin:0;font-size:18px}.muted{color:var(--muted);font-size:12px}.link-panel{display:grid;grid-template-columns:1fr 1fr;gap:16px}.link-box,.session-box{padding:18px;border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:22px}.link-box h4,.session-box h4{margin:0 0 7px}.link-box p{color:var(--muted);line-height:1.6;font-size:13px}.phone-row{display:flex;gap:10px;align-items:stretch;margin:14px 0 10px}.phone-input{flex:1;min-width:0;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.18);color:#fff;padding:13px 14px;font:inherit;outline:none}.phone-input:focus{border-color:rgba(255,115,200,.65);box-shadow:0 0 0 3px rgba(255,115,200,.10)}.code-wrap{display:grid;place-items:center;gap:10px;padding:22px 16px;border-radius:22px;background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.03));min-height:300px;border:1px solid var(--line);text-align:center}.code-label{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.12em}.pair-code{font-size:clamp(34px,7vw,56px);font-weight:1000;letter-spacing:.11em;word-break:break-word}.code-help{max-width:360px;color:var(--muted);font-size:12px;line-height:1.7}.copy-code{margin-top:2px}.status-line{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.pill{padding:8px 10px;border-radius:999px;border:1px solid var(--line);font-size:11px;color:#e9e2ef;background:rgba(255,255,255,.04)}.pill.good{color:#a8ffd9;border-color:rgba(112,242,187,.24);background:rgba(112,242,187,.08)}.pill.warn{color:#ffe7a3;border-color:rgba(255,211,110,.22);background:rgba(255,211,110,.08)}.pill.danger{color:#ffd0d8;border-color:rgba(255,122,141,.2);background:rgba(255,122,141,.08)}
+    .url{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:#e2dbf0;word-break:break-all;background:rgba(0,0,0,.19);padding:11px 12px;border-radius:12px;border:1px solid var(--line)}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.step{padding:16px;border-radius:18px;background:rgba(255,255,255,.045);border:1px solid var(--line);animation:riseIn .5s ease both}.step:nth-child(1){animation-delay:.05s}.step:nth-child(2){animation-delay:.15s}.step:nth-child(3){animation-delay:.25s}.step:nth-child(4){animation-delay:.35s}.step b{font-size:12px}.step p{color:var(--muted);font-size:11px;line-height:1.6;margin:7px 0 0}
+    .toast{position:fixed;right:18px;bottom:18px;max-width:340px;padding:14px 16px;border-radius:16px;background:rgba(17,15,31,.92);border:1px solid var(--line);box-shadow:var(--shadow);transform:translateY(24px);opacity:0;pointer-events:none;transition:.25s}.toast.show{transform:none;opacity:1}.toast b{display:block;font-size:13px}.toast span{display:block;font-size:11px;color:var(--muted);margin-top:4px}
+    footer{padding:26px 4px;color:#a49bb8;font-size:11px;text-align:center}
+    @media(max-width:900px){.hero{grid-template-columns:1fr}.link-panel{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.hero-main{min-height:auto;padding:30px 24px}}
+    @media(max-width:620px){.shell{width:min(94vw,1220px)}.stats,.anime-grid{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}.hero h2{font-size:44px}.topbar{align-items:flex-start}.live{font-size:11px}}
+  </style>
+</head>
+<body>
+  <div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
+  <main class="shell">
+    <div class="topbar">
+      <div class="brand"><div class="brand-badge">🌸</div><div><h1>Orihime MD</h1><small>Cute • Simple • Fast</small></div></div>
+      <div class="live"><span class="dot"></span><span id="apiState">Backend online</span> <a href="/admin.html" class="btn ghost" style="text-decoration:none;padding:8px 12px;font-size:12px;margin-left:10px">🛠 Admin</a></div>
+    </div>
+
+    <section class="hero">
+      <div class="card hero-main">
+        <span class="eyebrow">✦ <b>WhatsApp automation</b> • Anime edition</span>
+        <h2>Link your<br><span>Orihime MD</span></h2>
+        <p>Connect a WhatsApp account to the Orihime engine. Command images are shipped directly with the bot as individual repository files, so responses do not depend on a WhatsApp Channel.</p>
+        <div class="hero-actions"><button class="btn ghost" id="linkBtn">🌸 Link WhatsApp</button><button class="btn ghost" id="refreshBtn">↻ Refresh status</button></div>
+        <div class="status-line" id="heroStatus"><span class="pill warn">No session selected</span></div>
+      </div>
+      <div class="card">
+        <div class="stats">
+          <div class="stat"><div class="label">LINKED USERS</div><div class="value" id="userCount">0</div><div class="sub">WhatsApp sessions</div></div>
+          <div class="stat"><div class="label">CONNECTED</div><div class="value" id="connectedCount">0</div><div class="sub">Working right now</div></div>
+          <div class="stat"><div class="label">COMMAND IMAGES</div><div class="value" id="imageCount">0</div><div class="sub">Loaded from repo root</div></div>
+          <div class="stat"><div class="label">ENGINE</div><div class="value" style="font-size:24px">GOWS</div><div class="sub">Local media ready</div></div>
+        </div>
+        <div class="anime-grid" id="slidesGrid">
+          <div class="anime-tile"><div class="shade"><b>Anime slideshow</b><span>Add your images in assets/slides/</span></div></div>
+          <div class="anime-tile"><div class="shade"><b>Background</b><span>Add assets/background.jpg</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card section" id="linkSection">
+      <div class="section-head"><div><h3>📱 WhatsApp Link</h3><div class="muted">Enter the WhatsApp number you want to link in full international format.</div></div><span class="pill" id="sessionPill">No active link</span></div>
+      <div class="link-panel">
+        <div class="link-box"><h4>Connect a new account</h4><p>Enter the number with its country code, digits only. Example: <b>2348163201351</b>. Orihime will create your own private session and generate your pairing code — no admin access needed, this is entirely self-service.</p><div class="phone-row"><input class="phone-input" id="phoneInput" inputmode="numeric" autocomplete="tel" maxlength="15" placeholder="2348163201351" aria-label="WhatsApp phone number"></div><div class="url" id="sessionRef">Session: —</div><div class="status-line" id="sessionStatus"><span class="pill">Waiting</span></div><div class="hero-actions"><button class="btn primary" id="linkBtn2">🌸 Generate pairing code</button><button class="btn ghost" id="pairBtn" disabled>↻ New pairing code</button><button class="btn danger" id="removeBtn" disabled>Remove link</button></div></div>
+        <div class="code-wrap" id="codeWrap"><div class="code-label">Your pairing code</div><div class="pair-code" id="pairCode">— — — —</div><div class="code-help" id="codeHelp">Enter your phone number, generate a code, then on your primary WhatsApp phone open Linked devices → Link a device → Link with phone number and enter the code.</div><button class="btn ghost copy-code" id="copyCodeBtn" disabled>Copy code</button></div>
+      </div>
+      <div class="link-box" style="margin-top:16px"><h4>Already have a session?</h4><p>If you're on a new device or cleared your browser, paste your session ID here to resume managing it. No token needed.</p><div class="phone-row"><input class="phone-input" id="restoreSessionInput" placeholder="orihime_xxxxxxxxxxxxxxxxxxxxxx" aria-label="Session ID"></div><div class="hero-actions"><button class="btn ghost" id="restoreBtn">↻ Load this session</button></div></div>
+    </section>
+
+    <section class="card section">
+      <div class="section-head"><div><h3>✨ Anime slide show</h3><div class="muted">Drop JPG/PNG/WebP/GIF files into <code>public/assets/slides/</code>.</div></div><span class="pill" id="slideCount">0 slides</span></div>
+      <div class="anime-grid" id="slidesLarge"></div>
+    </section>
+
+    <section class="card section">
+      <div class="section-head"><div><h3>⚙️ How the connection works</h3><div class="muted">Designed for multiple independent WhatsApp sessions.</div></div></div>
+      <div class="steps">
+        <div class="step"><b>01 · CREATE</b><p>Orihime creates an isolated WAHA session for one linked WhatsApp account.</p></div>
+        <div class="step"><b>02 · PAIR</b><p>Enter the generated code in WhatsApp → Linked devices → Link a device → Link with phone number.</p></div>
+        <div class="step"><b>03 · ASSETS</b><p>The backend reads the individual command images committed at repository root and sends the mapped asset with each supported response.</p></div>
+        <div class="step"><b>04 · RECOVER</b><p>The watchdog restarts stopped/failed sessions without calling logout/delete during normal recovery.</p></div>
+      </div>
+    </section>
+
+    <footer>© 2026 Orihime MD ♡ · Cute Precious · Keep WAHA session storage persistent in production.</footer>
+  </main>
+  <div class="toast" id="toast"><b id="toastTitle"></b><span id="toastBody"></span></div>
+  <script>
+    // GitHub Pages frontend: replace this with your Render backend URL.
+    const API_BASE = 'https://orihime-md.onrender.com';
+    const state = { session: null, poll: null, pairingCode: null };
+    const $ = (id) => document.getElementById(id);
+    function toast(title, body=''){ $('toastTitle').textContent=title; $('toastBody').textContent=body; $('toast').classList.add('show'); clearTimeout(window.__t); window.__t=setTimeout(()=>$('toast').classList.remove('show'),3200); }
+    function displayStatus(status){
+      const s=String(status||'').toUpperCase();
+      if (s === 'WORKING') return 'ACTIVE';
+      return ['SCAN_QR_CODE','PASSKEY_REQUIRED','PASSKEY_CONFIRMATION_REQUIRED','STARTING'].includes(s)?'PAIRING':(s||'UNKNOWN');
+    }
+    function pill(status){
+      const s=String(status||'').toUpperCase();
+      const label=displayStatus(s);
+      const cls=s==='WORKING'?'good':(['FAILED','STOPPED'].includes(s)?'danger':(['SCAN_QR_CODE','PASSKEY_REQUIRED','PASSKEY_CONFIRMATION_REQUIRED','STARTING'].includes(s)?'warn':''));
+      return `<span class="pill ${cls}">${label}</span>`;
+    }
+    // Stats / full session list. No auth — open to anyone.
+    async function api(path, options={}){ const headers={'Content-Type':'application/json',...(options.headers||{})}; const base=API_BASE.replace(/\/$/,''); const r=await fetch(base+path,{...options,headers}); const data=await r.json().catch(()=>({})); if(!r.ok) throw new Error(data.error || data.message || 'Request failed'); return data; }
+    // Self-service calls scoped to ONE session (creating a link, checking its
+    // status, getting a new pairing code, removing it). Creating a session
+    // needs no token at all; there is no auth anywhere in this backend anymore —
+    // anyone who knows a session id can manage that session.
+    async function sessionApi(path, options={}){ return api(path, options); }
+    function setSessionUi(s, me){
+      if(!s){ $('sessionPill').className='pill'; $('sessionPill').textContent='No active link'; $('sessionRef').textContent='Session: —'; $('sessionStatus').innerHTML='<span class="pill">Waiting</span>'; $('heroStatus').innerHTML='<span class="pill warn">No session selected</span>'; $('removeBtn').disabled=true; $('pairBtn').disabled=true; return; }
+      $('sessionPill').className='pill '+(s.status==='WORKING'?'good':s.status==='FAILED'?'danger':'warn'); $('sessionPill').textContent=displayStatus(s.status);
+      $('sessionRef').textContent='Session: '+s.name;
+      $('sessionStatus').innerHTML=pill(s.status)+`<span class="pill">Mode: ${s.mode}</span><span class="pill">Prefix: ${s.prefix}</span>`+(me?.id?`<span class="pill good">${me.pushName||me.id}</span>`:'');
+      $('heroStatus').innerHTML=pill(s.status)+(s.recoveryAttempts?`<span class="pill warn">Recovery ${s.recoveryAttempts}</span>`:'');
+      $('removeBtn').disabled=false;
+    }
+    async function refreshStats(){
+      try{ const d=await api('/api/stats'); $('userCount').textContent=d.userCount||0; $('connectedCount').textContent=d.connectedCount||0; $('imageCount').textContent=d.commandImages||0; $('apiState').textContent='Backend online'; }catch(e){ $('apiState').textContent='Backend unreachable'; }
+    }
+    async function pollSession(){
+      if(!state.session) return;
+      try{ const d=await sessionApi('/api/link/'+encodeURIComponent(state.session)+'/status'); setSessionUi(d.session,d.me);  }catch(e){ toast('Session check failed',e.message); }
+    }
+    function normalizePhoneInput(value){ return String(value||'').replace(/\D/g,'').slice(0,15); }
+    function validPhoneInput(value){ return /^[1-9]\d{6,14}$/.test(value); }
+    function showPairingCode(code){
+      state.pairingCode=String(code||'').trim() || null;
+      $('pairCode').textContent=state.pairingCode || '— — — —';
+      $('copyCodeBtn').disabled=!state.pairingCode;
+      if(state.pairingCode){ $('codeHelp').textContent='On your primary WhatsApp phone: Linked devices → Link a device → Link with phone number, then enter this code.'; }
+    }
+    async function createAndPair(){
+      const phone=normalizePhoneInput($('phoneInput').value);
+      $('phoneInput').value=phone;
+      if(!validPhoneInput(phone)){ $('phoneInput').focus(); return toast('Invalid phone number','Use the full international number with country code, digits only. Example: 2348163201351'); }
+      $('linkBtn2').disabled=true; $('pairBtn').disabled=true; showPairingCode(null);
+      try{
+        const d=await sessionApi('/api/link',{method:'POST',body:JSON.stringify({phoneNumber:phone})});
+        state.session=d.session; localStorage.setItem('orihime_session',state.session);
+        showPairingCode(d.code);
+        toast('Pairing code generated',`Use ${d.code||'the code'} in WhatsApp on your primary phone.`);
+        await pollSession();
+        clearInterval(state.poll); state.poll=setInterval(()=>{pollSession();refreshStats();},4500);
+      }catch(e){ toast('Pairing failed',e.message); } finally { $('linkBtn2').disabled=false; $('pairBtn').disabled=!state.session; }
+    }
+    async function pairing(){
+      if(!state.session) return createAndPair();
+      const phone=normalizePhoneInput($('phoneInput').value);
+      if(!validPhoneInput(phone)){ $('phoneInput').focus(); return toast('Enter phone number','Use the full international number with country code, digits only.'); }
+      $('pairBtn').disabled=true;
+      try{ const d=await sessionApi('/api/link/'+encodeURIComponent(state.session)+'/pairing-code',{method:'POST',body:JSON.stringify({phoneNumber:phone})}); showPairingCode(d.code); toast('New pairing code',`Use ${d.code||'the code'} in WhatsApp.`); }catch(e){ toast('Pairing code failed',e.message); } finally { $('pairBtn').disabled=false; }
+    }
+    async function remove(){
+      if(!state.session) return; if(!confirm('Remove this linked WhatsApp session? This explicitly logs it out and deletes the WAHA session.')) return;
+      try{ await sessionApi('/api/link/'+encodeURIComponent(state.session)+'/remove',{method:'POST',body:'{}'}); toast('Link removed'); state.session=null; state.pairingCode=null; localStorage.removeItem('orihime_session'); clearInterval(state.poll); showPairingCode(null); $('codeHelp').textContent='Enter your phone number, generate a code, then on your primary WhatsApp phone open Linked devices → Link a device → Link with phone number and enter the code.'; $('pairBtn').disabled=true; setSessionUi(null); await refreshStats(); }catch(e){ toast('Remove failed',e.message); }
+    }
+    async function restoreSession(){
+      const session=String($('restoreSessionInput').value||'').trim();
+      if(!session){ return toast('Missing details','Enter your session ID.'); }
+      localStorage.setItem('orihime_session',session);
+      state.session=session;
+      $('restoreBtn').disabled=true;
+      try{
+        await pollSession();
+        clearInterval(state.poll); state.poll=setInterval(()=>{pollSession();refreshStats();},4500);
+        toast('Session restored',session);
+      }catch(e){
+        toast('Could not load session',e.message);
+        localStorage.removeItem('orihime_session'); state.session=null;
+      } finally { $('restoreBtn').disabled=false; }
+    }
+    let slideshowTimer;
+    async function loadSlides(){
+      try{ const files=await api('/api/assets/slides'); $('slideCount').textContent=files.length+' slide'+(files.length===1?'':'s'); if(!files.length){$('slidesLarge').innerHTML='<div class="anime-tile" style="min-height:260px"><div class="shade"><b>Add anime slides</b><span>Place images inside public/assets/slides/</span></div></div>';return;} clearInterval(slideshowTimer); const markup=files.map((f,i)=>`<div class="anime-tile"><img src="${f}" alt="Anime slide ${i+1}"><div class="shade"><b>Orihime visual ${String(i+1).padStart(2,'0')}</b><span>Local asset</span></div></div>`).join(''); $('slidesLarge').innerHTML=markup; $('slidesGrid').innerHTML=files.slice(0,2).map((f,i)=>`<div class="anime-tile"><img src="${f}" alt="Preview ${i+1}"><div class="shade"><b>Anime preview</b><span>${i+1} / ${files.length}</span></div></div>`).join(''); const preview=$('slidesGrid').querySelector('img'); let idx=0; slideshowTimer=setInterval(()=>{ if(!preview) return; idx=(idx+1)%files.length; preview.style.opacity='0'; setTimeout(()=>{preview.src=files[idx]; preview.style.opacity='1';},220); },3600); }catch(e){}
+    }
+    async function boot(){
+      state.session=localStorage.getItem('orihime_session')||null;
+      if(state.session){ clearInterval(state.poll); state.poll=setInterval(()=>{pollSession();refreshStats();},4500); await pollSession(); }
+      await Promise.all([refreshStats(),loadSlides()]);
+    }
+    $('linkBtn').addEventListener('click',()=>{ $('phoneInput').focus(); $('linkSection').scrollIntoView({behavior:'smooth',block:'center'}); }); $('linkBtn2').addEventListener('click',createAndPair); $('removeBtn').addEventListener('click',remove); $('pairBtn').addEventListener('click',pairing); $('copyCodeBtn').addEventListener('click',async()=>{ if(!state.pairingCode) return; try{ await navigator.clipboard.writeText(state.pairingCode); toast('Code copied'); }catch{ toast('Copy failed','Long-press the code to copy it.'); } }); $('restoreBtn').addEventListener('click',restoreSession); $('phoneInput').addEventListener('input',()=>{ $('phoneInput').value=normalizePhoneInput($('phoneInput').value); }); $('refreshBtn').addEventListener('click',()=>{pollSession();refreshStats();loadSlides();}); boot();
+  </script>
+</body>
+</html>
